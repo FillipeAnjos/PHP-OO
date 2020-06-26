@@ -7,7 +7,6 @@ body{
 .sidebar{
 	text-align: center;
 	background-color: #2980b9;
-	margin-top: -10px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -33,7 +32,54 @@ body{
 	color: #fff;
 }
 
+/* ***** CSS do Home ***** */
+
+.cashierHome{
+	width: 400px;
+	border: 1px solid #A4A4A4;
+	padding: 20px;
+}
+
+.legendCashierHome{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.notHavenLogin{
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+/* ***** CSS do CreateAccount ***** */
+
+#h3Information{
+	margin-bottom: 30px;
+}
+
+#inputsCreateAccount{
+ margin-bottom: 15px;
+}
+
+#createUser{
+	margin-top: 32px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 footer{
 	text-align: center;
 	font-size: 20px;
+	position: absolute;
+    bottom: 0;
+    width: 100%;
 }

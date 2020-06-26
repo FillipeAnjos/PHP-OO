@@ -20,6 +20,9 @@ $router->group(null);
 $router->get("/", "Web:home");
 //$router->get("/{filter}", "Web:home");
 $router->get("/contato", "Web:contact");
+$router->get("/criarConta", "Web:createAccount");
+$router->post("/login", "Web:login");
+$router->post("/criandoConta", "Web:creatingAccount");
 
 
 
