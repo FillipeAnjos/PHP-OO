@@ -1,0 +1,28 @@
+{
+	"name": "fillipe-anjos/php-poo",
+	"description": "PHP Orientado a Objeto!", 
+	"minimum-stability": "stable",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Fillipe dos Anjos",
+			"email": "fillipe.anjos.2000@hotmail.com",
+			"homepage": "https://github.com/FillipeAnjos"
+		}
+	],
+	"config": {
+		"vendor-dir": "vendor"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "App/"
+		},
+		"files": [
+			"App/Config.php"
+		]
+	},
+	"require": {
+		"coffeecode/router": "1.0.*",
+		"league/plates": "4.0.0-alpha"
+	}
+}
