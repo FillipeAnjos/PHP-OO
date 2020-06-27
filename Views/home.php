@@ -3,6 +3,8 @@
 
 $v->layout("_theme");
 
+include "messages.php";
+
 ?>
 
 <div class="container">
@@ -19,9 +21,9 @@ $v->layout("_theme");
 				<legend class="legendCashierHome">Entre com seu login:</legend>
 
 			    <label for="emailHome">Email:</label>
-			    <input type="text" id="emailHome" name="emailHome" class="form-control"><br>
+			    <input type="text" id="emailHome" name="email" class="form-control" required><br>
 			    <label for="passwordHome">Senha:</label>
-			    <input type="password" id="passwordHome" name="passwordHome" class="form-control"><br>
+			    <input type="password" id="passwordHome" name="senha" class="form-control" required><br>
 
 			    <input type="submit" value="Entrar" class="btn btn btn-primary">
 				

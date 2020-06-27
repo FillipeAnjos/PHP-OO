@@ -43,16 +43,32 @@ class Web{
 
 	public function creatingAccount($data){
 
-		if($data['senha'] != $data['confirmeSenha']){
-
-			echo $this->view->render("home", [
-				"title" => "Página Inicial"
-			]);
-			
-			die();	
-		}
-
 		$user = new \App\Model\Usuario();
+		$usuarioDao = new \App\Model\UsuarioDao();
+
+			if($data['senha'] != $data['confirmeSenha']){
+
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					"message" => "Erro! As senhas devem ser iguais!",
+					"statusMessage" => "error"
+				]);
+				
+				die();	
+			}
+
+		$checkUser = $usuarioDao->checkUserBank($data['email']);
+
+			if(!empty($checkUser)){
+
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					"message" => "Erro! Esse email já consta em nossa base!",
+					"statusMessage" => "error"
+				]);
+
+				die();
+			}
 
 		$user->setEmail($data['email']);
 		$user->setSenha($data['senha']);
@@ -67,45 +83,45 @@ class Web{
 		$user->setCidade($data['cidade']);
 		$user->setEstado($data['estado']);
 
-		$usuarioDao = new \App\Model\UsuarioDao();
-
 		$resUser = $usuarioDao->create($user);
-		/*
-		if($resUser){
-			//mandar mensagem de sucesso
-		}else{
-			//mandar mensagem de erro
-		}
-		*/
 
 		echo $this->view->render("home", [
-			"title" => "Página Inicial"
+			"title" => "Página Inicial",
+			"message" => "Cadastro realizado com sucesso!",
+			"statusMessage" => "success"
 		]);
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public function login($data){
 
-		//$user = new \App\Model\Usuario();
+		$usuarioDao = new \App\Model\UsuarioDao();
 
-		echo "Estou no metodo login dentro do Web.php";
-		die();
+		$res = $usuarioDao->readOneUser($data);
+
+			if(empty($res)){
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					"message" => "Esse usuário não consta em nossa base!",
+					"statusMessage" => "error"
+				]);
+			}else{
+				
+
+				echo "Criar o login do usuário!";
+
+
+
+
+				/*
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					//"message" => "",
+					//"statusMessage" => "success"
+				]);
+				*/
+			}
+
 	}
 	
 }
