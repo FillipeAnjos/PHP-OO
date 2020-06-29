@@ -95,9 +95,9 @@ class Web{
 
 	public function login($data){
 
-		$usuarioDao = new \App\Model\UsuarioDao();
+		$usuario = new \App\Model\Usuario();
 
-		$res = $usuarioDao->readOneUser($data);
+		$res = $usuario->loginUser($data);
 
 			if(empty($res)){
 				echo $this->view->render("home", [
@@ -107,20 +107,82 @@ class Web{
 				]);
 			}else{
 				
-
-				echo "Criar o login do usuário!";
-
-
-
-
-				/*
 				echo $this->view->render("home", [
 					"title" => "Página Inicial",
 					//"message" => "",
 					//"statusMessage" => "success"
 				]);
-				*/
+
 			}
+
+	}
+
+	public function logout(){
+
+		$usuario = new \App\Model\Usuario();
+
+		$res = $usuario->logoutUser();
+
+			if(empty($res)){
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					"message" => "Ocorreu um erro ao deslogar o usuário!",
+					"statusMessage" => "error"
+				]);
+			}else{
+				echo $this->view->render("home", [
+					"title" => "Página Inicial",
+					"message" => "Usuário deslogado com sucesso!",
+					"statusMessage" => "success"
+				]);
+			}
+
+	}
+
+	public function whoWeAre(){
+		
+		echo $this->view->render("whoWeAre", [
+			"title" => "Quem Somos"
+		]);
+		
+
+	}
+
+	public function feedback(){
+
+		echo $this->view->render("feedback", [
+			"title" => "Feedback"
+		]);
+
+	}
+
+	public function creatingFeedback($data){
+
+		$userDao = new \App\Model\UsuarioDao();
+		$feedback = new \App\Model\Feedback();
+
+		$feedback->setIdUsuario($data['idUsuario']);
+		$feedback->setEmail($data['email']);
+		$feedback->setNome($data['nome']);
+		$feedback->setAssunto($data['assunto']);
+		$feedback->setMensagem($data['mensagem']);
+
+		$resFeedback = $userDao->createFeedback($feedback);
+
+		if($resFeedback){
+			echo $this->view->render("feedback", [
+				"title" => "Feedback",
+				"message" => "Mensagem enviada com sucesso!",
+				"statusMessage" => "success"
+			]);
+		}else{
+			echo $this->view->render("feedback", [
+				"title" => "Feedback",
+				"message" => "ocorreu um erro ao enviar a mensagem!",
+				"statusMessage" => "error"
+			]);
+		}
+
 
 	}
 	
