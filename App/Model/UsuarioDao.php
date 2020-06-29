@@ -56,26 +56,6 @@ class UsuarioDao {
 		
 	}
 
-	public function readOneUser($data){
-
-		$sql = "select * from usuario as user join pessoa as pes on user.id = pes.id where user.email = ? and user.senha = ?";
-
-		$stmt = Conexao::getConn()->prepare($sql);
-
-		$stmt->bindValue(1, $data['email']);
-		$stmt->bindValue(2, $data['senha']);
-
-		$stmt->execute();
-
-		if($stmt->rowCount() > 0){
-			$resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-			return $resultado;
-		}else{
-			return [];
-		}
-
-	}
-
 	public function checkUserBank($email){
 
 		$sql = "select * from usuario as user join pessoa as pes on user.id = pes.id where user.email = ?";
@@ -157,6 +137,24 @@ class UsuarioDao {
 
 		return $res;
 		
+	}
+
+	public function createFeedback(Feedback $f){
+
+		$sql = "insert into feedback (id_user, email_user, nome_user, assunto, mensagem) values (?, ?, ?, ?, ?)";
+
+		$stmt = Conexao::getConn()->prepare($sql);
+
+		$stmt->bindValue(1, $f->getIdUsuario());
+		$stmt->bindValue(2, $f->getEmail());
+		$stmt->bindValue(3, $f->getNome());
+		$stmt->bindValue(4, $f->getAssunto());
+		$stmt->bindValue(5, $f->getMensagem());
+
+		$resFeedback = $stmt->execute();
+
+		return $resFeedback;
+
 	}
 
 }

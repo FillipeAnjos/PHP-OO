@@ -22,8 +22,11 @@ $router->get("/", "Web:home");
 $router->get("/contato", "Web:contact");
 $router->get("/criarConta", "Web:createAccount");
 $router->post("/login", "Web:login");
+$router->get("/logout", "Web:logout");
 $router->post("/criandoConta", "Web:creatingAccount");
-
+$router->get("/quemSomos", "Web:whoWeAre");
+$router->get("/feedback", "Web:feedback");
+$router->post("/criandoFeedback", "Web:creatingFeedback");
 
 
 
